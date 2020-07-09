@@ -16,12 +16,14 @@ export default {
   },
   methods: {
     getData() {
+      this.$emit('searching')
       var url = "https://uniquefunctionname.azurewebsites.net/api/EgoGraph?name=" + this.query
+      // var url = "http://localhost:7071/api/EgoGraph?name=" + this.query
       axios
         .get(url)
         .then(response => {
           if (response.status === 200){
-            this.$emit('myEmit', response.data)
+            this.$emit('result', response.data)
           } 
           else {
             console.log('server problems:', {response})

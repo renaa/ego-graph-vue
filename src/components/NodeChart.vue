@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <highcharts :options="chartOptions" ref="chart2"></highcharts>
-    <div class='test'>xx</div>
+  <div class="nodeChart">
+    <highcharts :options="chartOptions" ref="chart2" id="highChart"></highcharts>
     <button @click="addNode">add node 4</button>
   </div>
 </template>
@@ -13,72 +12,12 @@ import NetworkGraph from "highcharts/modules/networkgraph"
 NetworkGraph(Highcharts)
 
 export default {
+  props: ['chartOptions'],
   data() {
     return {
-      nodes: [
-              {
-                id: 1,
-                title: "node 1",
-              },
-              {
-                id: 2,
-                title: "node 2",
-              },
-              {
-                id: 3,
-                title: "node 3",
-              },
-            ],
-      chartOptions: {
-        chart: {
-          type: "networkgraph",
-        },
-        title: false,
-        credits: false,
-        xAxis: {
-          title: false,
-        },
-        yAxis: {
-          title: false,
-        },
-        series: [
-          {
-            dataLabels: {
-              enabled: true,
-              allowOverlap: true,
-              linkFormat: "",
-              format: "{point.title}",
-            },
-            marker: {
-              radius: 30,
-            },
-            nodes: this.nodes,
-            data: [
-              {
-                from: 1,
-                to: 2,
-                dataLabels: {
-                  linkFormat: "1 -> 2",
-                },
-              },
-              {
-                from: 1,
-                to: 3,
-                dataLabels: {
-                  linkFormat: "1 -> 3",
-                },
-              },
-              {
-                from: 2,
-                to: 3,
-                dataLabels: {
-                  linkFormat: "2 -> 3",
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
+      c: '#ff00ff',
+      
     }
   },
   computed: function(){
@@ -94,7 +33,8 @@ export default {
       console.log('run')
     },
     addNode(){
-      this.chartOptions.series.nodes.push({id:4, title:"node 4"})
+      // this.chartOptions.series[0].nodes = this.n
+      // this.chartOptions.series[0].data = this.d
     }
   }
 }
@@ -105,10 +45,7 @@ export default {
 * {
   margin: 1em;
 }
-tspan{
-  background-color: red !important;
-}
-.test{
-  background-color: red;
+#highChart{
+  height: 100vh;
 }
 </style>
