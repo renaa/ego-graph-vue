@@ -1,7 +1,7 @@
 <template>
 <div>
-  <input type="text" v-model="query" />
-  <button @click="getData()">search</button>
+  <input type="text" v-model="query" @keyup.enter="getData" />
+  <button @click="getData">search</button>
 </div>
 </template>
 

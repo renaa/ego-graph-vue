@@ -1,122 +1,66 @@
 <template>
   <div id="app">
-    
-    <!-- <highcharts class="hc" :options="chartOptions"></highcharts> -->
-    <!-- <highcharts
-      :constructorType="'ganttChart'"
-      class="hc"
-      :options="chartOptions"
-      ref="chart"
-    ></highcharts> -->
-    <Query @result='onDataFromServer' @searching='searchingAnimation'/>
-      <div id='q'>test</div>
-    <NodeChart :chartOptions='chartOptions'/>
+
+    <Query @result="onDataFromServer"/>
+
+    <d3-network class="d3-network" :net-nodes="nodes" :net-links="links" :options="options" />
+
   </div>
 </template>
 
 <script>
-import Query from './components/Query' 
-
-import NodeChart from './components/NodeChart'
-
-// import { networkgraph } from "highcharts-vue"
-// import Highcharts from "highcharts"
-// import exportingInit from "highcharts/modules/exporting"
-
-// exportingInit(Highcharts)
+import Query from "./components/Query"
+import D3Network from 'vue-d3-network'
 
 export default {
   name: "App",
   components: {
     Query,
+    D3Network,
 
-    NodeChart,
   },
   data: function() {
     return {
       response: "",
-      chartOptions: {
-        chart: {
-          type: "networkgraph",
-        },
-        title: false,
-        credits: false,
-        xAxis: {
-          title: false,
-        },
-        yAxis: {
-          title: false,
-        },
-        series: [
-          {
-            layoutAlborithm: {
-              enableSimulation: true
-            },
-            dataLabels: {
-              enabled: true,
-              allowOverlap: true,
-              linkFormat: "",
-              format: "{point.title}",
-            },
-            marker: {
-              radius: 30,
-            },
-            nodes: [
-              {
-                id: 1,
-                title: "node 1",
-                color: this.c
-              },
-              {
-                id: 2,
-                title: "node 2",
-              },
-              {
-                id: 3,
-                title: "node 3",
-              },
-            ],
-            data: [
-              {
-                from: 1,
-                to: 2,
-                dataLabels: {
-                  linkFormat: "1 -> 2",
-                },
-                lineWidth: 3
-              },
-              {
-                from: 1,
-                to: 3,
-                dataLabels: {
-                  linkFormat: "1 -> 3",
-                },
-              },
-              {
-                from: 2,
-                to: 3,
-                dataLabels: {
-                  linkFormat: "2 -> 3",
-                },
-              },
-            ],
-          },
-        ],
+      
+      isOpen: false,
+
+      nodes: [],
+      links: [],
+      options:{
+      canvas: false,
+        force: 3000,
+        nodeLabels: true,
+        nodeSize: 20,
+        fontSize: 20,
+
       },
     }
   },
   methods: {
-    onDataFromServer(value){
-      this.response = value
-      this.chartOptions.series[0].nodes = value.Item1
-      this.chartOptions.series[0].data = value.Item2
+    onDataFromServer(value) {
+      console.log(value.Item1, value.Item1.length === 0)
+      if(value.Item1.length === 0){
+        console.log('no result from server')
+      }
+      else{
+      this.nodes = value.Item1.map(x => {
+        return {
+          ...x,
+          _color: 'gray'
+        }
+      })
+      this.links = value.Item2.map(x => {
+        return{
+          ...x, 
+          _color: 'gray'
+        }
+      });
+      }
     },
-    searchingAnimation(){
-        document.getElementById('highChart').style.background = 'red';
-        document.getElementById('q').style.background = 'red';
-    }
-  }
-  
+    
+
+  },
 }
 </script>
 
@@ -128,5 +72,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.d3-network{
+  height: 100vh;
 }
 </style>

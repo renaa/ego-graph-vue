@@ -1,6 +1,6 @@
 <template>
-  <div class="nodeChart">
-    <highcharts :options="chartOptions" ref="chart2" id="highChart"></highcharts>
+  <div>
+    <highcharts :options="chartOptions" ref="chart2"></highcharts>
     <button @click="addNode">add node 4</button>
   </div>
 </template>
@@ -45,7 +45,5 @@ export default {
 * {
   margin: 1em;
 }
-#highChart{
-  height: 100vh;
-}
+
 </style>
