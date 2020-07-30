@@ -1,7 +1,7 @@
 # ego-graph
 
 ## demo
- https://renaa.github.io/ego-graph-vue/.
+ https://renaa.github.io/ego-graph-vue/
  
 inspired by https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f
 
