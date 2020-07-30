@@ -1,19 +1,29 @@
 <template>
   <div id="app">
     <h1 class="egograph">
-      Egograph
+      Egograph <span class="ego-span"> ?</span>
       <div class="tooltiptext">
-        An ego graph is a great way to get to know a new thing. It is graphs where we can see
-        connected terms together and how they compare. This is done by recursively googling whatever
-        you serch for, and adding vs (versus). fex. "puppies vs" and seeing the search results that
-        come up, then doing the same to them.
+        An ego graph is a great way to get insight into ex. a technology (but it can be anything), and see connected search terms.
+        <br />
+        <br />
+        This is done by recursively googling queries, and adding vs (versus), doing the
+        same to the search results that come up, and building a graph from this.
+        <br>
+        <br>
+        Example "puppies vs" gives us "puppies vs cats" then "cats vs" gives us "cats vs dogs"
+        <br />
+        <br />
         <a href="https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f">
-          here is an article about it</a
+          Here is the article that gave me inspiration to make this.</a
         >
-        <br />
-        The thicker the line, the stronger the connection.
-        <br />
-        <br />
+                <br>
+        <br>
+        The thicker the line, the more relevant the connection.
+        <br>
+        <br>
+        This is a proof by concept. Some edge cases may not have been accounted for.
+        <br>
+        <br>
         <a class="octicon" href="https://github.com/renaa/ego-graph-vue">
           <svg
             class="octicon"
@@ -217,5 +227,12 @@ a {
   vertical-align: middle;
   fill: currentColor;
   height: 10%;
+}
+
+.ego-span{
+  vertical-align:top ;
+  font-size: 0.5em;
+  left: -10px;
+  position: relative;
 }
 </style>
