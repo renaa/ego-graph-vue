@@ -1,4 +1,4 @@
-# ego-graph-front
+# ego-graph
 
 ## Project setup
 ```
