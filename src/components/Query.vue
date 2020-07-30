@@ -1,5 +1,5 @@
 <template>
-  <div class="cube">
+  <div v-bind:class="[isSearching ? 'searching-cube': '', 'cube']">
 
       <input type="text" v-model="query" @keyup.enter="getData" placeholder="search for something"/>
       <button @click="getData">search</button>
@@ -14,12 +14,13 @@ export default {
   data() {
     return {
       query: "",
-      searching: false,
+      isSearching: false,
     }
   },
+ 
   methods: {
     getData() {
-      this.searching = true,
+      this.isSearching = true
       this.$emit("searching")
       var url = "https://uniquefunctionname.azurewebsites.net/api/EgoGraph?name=" + this.query
       // var url = "http://localhost:7071/api/EgoGraph?name=" + this.query // local function
@@ -31,9 +32,9 @@ export default {
           } else {
             console.log("server problems:", { response })
           }
+      this.isSearching = false
         })
         .catch(error => console.log(error))
-      this.searching = false
     },
   },
 }
@@ -57,6 +58,8 @@ input {
   outline: none;
   height: 90%;
   font-size: 1.1em;
+  background-color: transparent;
+  color: #073b4c;
 }
 button{
   border: none;
@@ -67,5 +70,8 @@ button{
   border-radius: 3px;
   height: 70%;
   
+}
+.searching-cube{
+  background-color: #8cffc9;
 }
 </style>
