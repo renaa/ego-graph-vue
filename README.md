@@ -1,5 +1,7 @@
 # ego-graph
 
+inspired by https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5359f
+
 ## Project setup
 ```
 yarn install
