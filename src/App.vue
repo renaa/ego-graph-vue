@@ -138,7 +138,6 @@ body {
   background: rgb(239, 71, 111);
   background: linear-gradient(351deg, rgba(239, 71, 111, 1) 0%, rgba(255, 209, 102, 1) 95%);
   margin: 0;
-  overflow: hidden;
 }
 a {
   text-decoration: none;
