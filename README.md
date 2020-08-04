@@ -4,7 +4,8 @@ inspired by https://medium.com/applied-data-science/the-google-vs-trick-618c8fd5
 ## demo: 
 https://renaa.github.io/ego-graph-vue/
  
- 
+## Azure function:
+https://github.com/renaa/EgoGraphFunctionApi
  
 # 💡 todo / ideas 💡
 size of node is determined by # search results for that particular string
